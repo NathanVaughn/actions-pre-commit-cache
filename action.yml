@@ -16,7 +16,7 @@ runs:
     - name: Get Python Version
       id: python
       shell: bash
-      run: echo "version=$(python -c 'import sys;print(sys.version)')" >> $GITHUB_OUTPUT
+      run: echo "version=$(python -c 'import sys;print(".".join([str(sys.version_info.major),str(sys.version_info.minor),str(sys.version_info.micro)]))')" >> $GITHUB_OUTPUT
 
     - name: Cache Pre-Commit
       uses: actions/cache@v4
