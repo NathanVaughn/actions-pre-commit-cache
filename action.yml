@@ -1,5 +1,5 @@
 name: Pre-commit Cache
-description: 'Install multiples tools using pipx from a requirements.txt file with caching'
+description: 'Composite GitHub Action to cache pre-commit environments'
 inputs:
   pre_commit_config:
     description: Path to the pre-commit-config.yaml file. Defaults to '.pre-commit-config.yaml'
