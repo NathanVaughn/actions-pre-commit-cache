@@ -16,15 +16,15 @@ runs:
     - name: Get Python Version
       id: python
       shell: bash
-      run: echo "version=$(python -c 'import sys;print(".".join([str(sys.version_info.major),str(sys.version_info.minor),str(sys.version_info.micro)]))')" >> $GITHUB_OUTPUT
+      run: echo "version=$(python -c 'import platform;print(platform.python_version())')" >> $GITHUB_OUTPUT
 
     - name: Cache Pre-Commit
       uses: actions/cache@v4
       with:
         path: ~/.cache/pre-commit
-        key: pre-commit-${{ steps.python.outputs.version }}-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles(inputs.pre_commit_config) }}
+        key: pre-commit-${{ runner.os }}-${{ runner.arch }}-${{ steps.python.outputs.version }}-${{ hashFiles(inputs.pre_commit_config) }}
         restore-keys: |
-            pre-commit-${{ steps.python.outputs.version }}-${{ runner.os }}-${{ runner.arch }}
-            pre-commit-${{ steps.python.outputs.version }}-${{ runner.os }}
-            pre-commit-${{ steps.python.outputs.version }}
+            pre-commit-${{ runner.os }}-${{ runner.arch }}-${{ steps.python.outputs.version }}
+            pre-commit-${{ runner.os }}-${{ runner.arch }}
+            pre-commit-${{ runner.os }}
             pre-commit
